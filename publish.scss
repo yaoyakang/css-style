@@ -77,7 +77,7 @@ input,textarea,select{
   @if($red>50){
     $red:20;
   }
-  @if($gree>50){
+  @if($green>50){
     $green:20;
   }
   @if($blue<200){
