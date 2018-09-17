@@ -1,9 +1,15 @@
-//2018-1-27 重新编写
+//2018-9-17 重新编写
+/*node-sass -w publish.scss publish.css --style expanded*/
 html,body{
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow-x:hidden ;
-  min-height: 100%;
+  overflow: scroll;
+  font-family:"微软雅黑",Arial;
   -webkit-overflow-scrolling : touch;
+}
+@function torem($px){//$px为需要转换的字号
+  @return $px / 75px * 1rem; //100px为根字体大小
 }
 *{
   padding:0;
@@ -31,6 +37,10 @@ h1,h2,h3,h4,h5{
 table{
   width: 100%;
   border-collapse: collapse;
+}
+pre{
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 a,img,button,input,textarea,div,ul,ol,li{
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -81,8 +91,8 @@ input,textarea,select{
   @if($green>50){
     $green:20;
   }
-  @if($blue<200){
-    $blue:150;
+  @if($blue<50){
+    $blue:20;
   }
   @return rgba($red,$green,$blue,0.4)
 }
@@ -302,3 +312,6 @@ $name:cols;
     width: percentage($i/$cols);
   }
 }
+//body{
+//  @include bg();
+//}
