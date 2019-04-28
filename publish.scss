@@ -1,12 +1,7 @@
-//2018-9-17 重新编写
-/*node-sass -w publish.scss publish.css --style expanded*/
+//2019-4-28 重新编写
+/*node-sass -w public.scss publisc.css --output-style compressed*/
 html,body{
-  width: 100vw;
-  height: 100vh;
-  overflow-x:hidden ;
-  overflow: scroll;
-  font-family:"微软雅黑",Arial;
-  -webkit-overflow-scrolling : touch;
+  font-family:'Helvetica Neue',Helvetica,sans-serif;
 }
 @function torem($px){//$px为需要转换的字号
   @return $px / 75px * 1rem; //100px为根字体大小
