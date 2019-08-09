@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="author" content="yyk,15934524011@163.com">
+    <meta name="revised" content="yyk, 2018/8/15/">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--<meta http-equiv="refresh" content="5"/>-->
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        function setRem() {
+            var html = document.documentElement;
+            var hWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = hWidth / 10 + 'px';
+        }
+
+        setRem();
+    </script>
+    <style>
+        @keyframes ripple {to {transform:scale(2);opacity:0;}}
+        .btn {
+            position: relative;
+            width: 13em;
+            height: 3em;
+            margin: 2em;
+            border: none;
+            outline: none;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            letter-spacing: .2em;
+            font-weight: bold;
+            background: #ffae00;
+            cursor: pointer;
+            overflow: hidden;
+            user-select: none;
+            border-radius: 2px;
+            color: #fff;
+        }
+        .ripple.show {
+            animation: ripple .75s ease-out;
+        }
+        .ripple {
+            position: absolute;
+            background: rgba(0,0,0,.15);
+            border-radius: 100%;
+            transform: scale(0);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+<button class="btn">BUTTON</button>
+<script>
+    var addRippleEffect = function (e) {
+        var target = e.target;
+        if (target.className.toLowerCase() !== 'btn') return false;
+        var rect = target.getBoundingClientRect();
+        var ripple = target.querySelector('.ripple');
+        if (!ripple) {
+            ripple = document.createElement('span');
+            ripple.className = 'ripple';
+            ripple.style.height = ripple.style.width = Math.max(rect.width, rect.height) + 'px';
+            target.appendChild(ripple);
+        }
+        ripple.classList.remove('show');
+
+        var top = e.offsetY- (ripple.offsetHeight / 2);
+        var left = e.offsetX - (ripple.offsetWidth / 2);
+        ripple.style.top = top + 'px';
+        ripple.style.left = left + 'px';
+        ripple.classList.add('show');
+        return false;
+    }
+    document.addEventListener('click', addRippleEffect, false);
+
+</script>
+
+</body>
+</html>
